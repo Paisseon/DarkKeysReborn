@@ -1,0 +1,8 @@
+Package: ai.paisseon.darkkeysreborn
+Name: Dark Keys Reborn
+Version: 1.0
+Architecture: iphoneos-arm
+Description: DarkKeysXII reborn
+Maintainer: paisseon
+Author: paisseon
+Depends: mobilesubstrate
