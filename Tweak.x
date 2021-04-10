@@ -7,20 +7,14 @@
 @end
 
 %hook UIKeyboard
-- (void) layoutSubviews {
+- (void) setFrame: (CGRect) arg1 {
 	%orig;
 	[self setBackgroundColor:[UIColor blackColor]];
 }
 %end
 
-%hook UIKBRenderConfig
-- (void) setLightKeyboard: (BOOL) arg1 {
-	%orig(0);
-}
-%end
-
 %hook UIKeyboardDockView
-- (void) layoutSubviews {
+- (void) _configureDockItem: (id) arg1 {
 	%orig;
 	[self setBackgroundColor:[UIColor blackColor]];
 }
