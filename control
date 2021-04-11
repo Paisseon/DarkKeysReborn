@@ -5,4 +5,4 @@ Architecture: iphoneos-arm
 Description: DarkKeysXII reborn
 Maintainer: paisseon
 Author: paisseon
-Depends: mobilesubstrate
+Depends: mobilesubstrate ws.hbang.common
