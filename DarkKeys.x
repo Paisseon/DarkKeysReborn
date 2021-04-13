@@ -1,22 +1,8 @@
 #import <UIKit/UIKit.h>
 #import <Cephei/HBPreferences.h>
+#import "DarkKeys.h"
 
 HBPreferences *preferences;
-bool enabled;
-bool darkkeys;
-bool nocaps;
-
-@interface UIKeyboard : UIView
-@end
-
-@interface UIKeyboardDockView : UIView
-@end
-
-@interface UIKeyboardLayoutStar : UIView
-@end
-
-@interface UIKBKeyView : UIView
-@end
 
 %hook UIKeyboard
 - (void) setFrame: (CGRect) arg1 {
@@ -35,7 +21,7 @@ bool nocaps;
 %hook UIKBKeyView
 - (void) viewDidLoad {
 	if (enabled && nocaps) self.layer.sublayers[0].hidden = 1; // hide function key caps
-	if (enabled && nocaps) self.layer.sublayers[0].opacity = 0.0; // hide function key caps
+	if (enabled && nocaps) self.layer.sublayers[0].opacity = 0.0;
 }
 %end
 
@@ -43,7 +29,21 @@ bool nocaps;
 - (void) viewDidLoad {
 	%orig;
 	if (enabled && nocaps) self.layer.sublayers[0].sublayers[1].sublayers[0].hidden = 1; // hide alphanumeric key caps
-	if (enabled && nocaps) self.layer.sublayers[0].sublayers[1].sublayers[0].opacity = 0.0; // hide alphanumeric key caps
+	if (enabled && nocaps) self.layer.sublayers[0].sublayers[1].sublayers[0].opacity = 0.0;
+}
+%end
+
+%hook TUIPredictionViewStackView
+- (void) viewDidLoad {
+	%orig;
+	if (enabled && darkkeys) [self setBackgroundColor:[UIColor blackColor]]; // make the prediction bar black
+}
+%end
+
+%hook UIKBRenderConfig // thanks u/demon-tk for reporting the bug
+- (BOOL) lightKeyboard {
+	if (enabled && darkkeys) return 0; // set keyboard to darkmode
+	return %orig;
 }
 %end
 
