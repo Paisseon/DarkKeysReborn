@@ -7,8 +7,8 @@ HBPreferences *preferences;
 %hook UIKeyboard
 - (void) setFrame: (CGRect) arg1 {
 	%orig;
-	if (nolight && UIScreen.mainScreen.traitCollection.userInterfaceStyle == 1) nlm = 0;
-	else nlm = 1;
+	if (nolight && UIScreen.mainScreen.traitCollection.userInterfaceStyle == 1) nlm = 0; // returns nlm false if in light mode and disable on light is enabled
+	else nlm = 1; // otherwise nlm is true
 	if (darkkeys && nlm) [self setBackgroundColor:[UIColor blackColor]]; // turn the background black
 }
 %end
@@ -59,7 +59,7 @@ HBPreferences *preferences;
     [preferences registerBool:&enabled default:YES forKey:@"Enabled"];
     [preferences registerBool:&darkkeys default:YES forKey:@"DarkKeys"];
     [preferences registerBool:&nocaps default:YES forKey:@"NoCaps"];
-    [preferences registerBool:&nolight default:NO forKey:@"NoLight"];
+    [preferences registerBool:&nolight default:NO forKey:@"NoLight"]; // idea by u/regloid
 
     if (enabled) %init;
 }
