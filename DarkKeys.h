@@ -1,6 +1,8 @@
 bool enabled;
 bool darkkeys;
 bool nocaps;
+bool nolight;
+bool nlm;
 
 @interface UIKeyboard : UIView
 @end
@@ -14,5 +16,7 @@ bool nocaps;
 @interface UIKBKeyView : UIView
 @end
 
-@interface TUIPredictionViewStackView : UIView
+@interface UIUserInterfaceStyleArbiter : NSObject
++ (id) sharedInstance;
+- (long long) currentStyle;
 @end
