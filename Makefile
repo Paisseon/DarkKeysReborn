@@ -1,12 +1,15 @@
-TARGET := iphone:clang:latest:13.0
-ARCHS = arm64 arm64e
-INSTALL_TARGET_PROCESSES = SpringBoard
-SYSROOT = $(THEOS)/sdks/iPhoneOS13.3.sdk
-TWEAK_NAME = DarkKeysReborn
+export SYSROOT = $(THEOS)/sdks/iPhoneOS14.4.sdk/
+export ARCHS = arm64 arm64e
+export TARGET = iphone:clang:latest:13.0
 
-DarkKeysReborn_FILES = Tweak.x
-DarkKeysReborn_CFLAGS = -fobjc-arc
-DarkKeysReborn_EXTRA_FRAMEWORKS = Cephei
+FINALPACKAGE = 1
+DEBUG = 0
+
+INSTALL_TARGET_PROCESSES = SpringBoard
+TWEAK_NAME = DarkKeysReborn
+$(TWEAK_NAME)_FILES = $(TWEAK_NAME).x
+$(TWEAK_NAME)_CFLAGS = -fobjc-arc -Wno-error=deprecated-declarations
+$(TWEAK_NAME)_EXTRA_FRAMEWORKS = UIKit
 
 SUBPROJECTS += Prefs
 

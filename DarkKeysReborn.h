@@ -1,8 +1,12 @@
-bool enabled;
-bool darkkeys;
-bool nocaps;
-bool nolight;
-bool nlm;
+#import <UIKit/UIKit.h>
+
+static NSString* bundleIdentifier = @"ai.paisseon.darkkeysreborn";
+static NSMutableDictionary *settings;
+
+static bool enabled;
+static bool darkKeyboard;
+static bool hideKeyCaps;
+static bool disableWhenLight;
 
 @interface UIKeyboard : UIView
 @end
